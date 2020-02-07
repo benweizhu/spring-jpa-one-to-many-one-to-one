@@ -21,6 +21,10 @@ public class Company {
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
   private List<User> users = new ArrayList<>();
 
+  @OneToOne(optional = false, cascade = CascadeType.ALL)
+  @JoinColumn(name = "ceo_id")
+  private User ceo;
+
   public void addUser(User user) {
     user.setCompany(this);
     users.add(user);

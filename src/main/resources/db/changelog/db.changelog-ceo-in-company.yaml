@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+
+  - changeSet:
+      id: add-ceo-column-to-company-table
+      author: Benwei Zhu
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: ceo_id
+                  type: int
+                  constraints:
+                    nullable: true
+            tableName: company
+        - addForeignKeyConstraint:
+            baseColumnNames: ceo_id
+            baseTableName: company
+            constraintName: fk_company__ceo_id
+            referencedColumnNames: id
+            referencedTableName: user
