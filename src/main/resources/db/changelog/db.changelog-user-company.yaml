@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: root
+
+  - changeSet:
+      id: create-company-table
+      author: Benwei Zhu
+      changes:
+        - createTable:
+            tableName: company
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: create-user-table
+      author: Benwei Zhu
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: company_id
+                  type: int
+                  constraints:
+                    unique: true
+  - changeSet:
+      id: add-company-id-as-foreign-key-to-user-table
+      author: Benwei Zhu
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: company_id
+            baseTableName: user
+            constraintName: fk_user__company_id
+            referencedColumnNames: id
+            referencedTableName: company
