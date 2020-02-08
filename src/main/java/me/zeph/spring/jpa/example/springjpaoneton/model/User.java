@@ -1,13 +1,15 @@
 package me.zeph.spring.jpa.example.springjpaoneton.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Table
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User {
 
