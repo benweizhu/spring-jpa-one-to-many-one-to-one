@@ -23,7 +23,7 @@ public class Company {
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
   private List<User> users = new ArrayList<>();
 
-  @OneToOne(optional = false, cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "ceo_id")
   private User ceo;
 
