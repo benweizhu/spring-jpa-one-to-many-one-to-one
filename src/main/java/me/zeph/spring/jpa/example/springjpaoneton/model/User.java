@@ -18,8 +18,6 @@ public class User {
 
   private String name;
 
-  @ManyToOne
-  @JoinColumn(name = "company_id")
-  private Company company;
-
+  @Column(name = "company_id")
+  private long companyId;
 }

@@ -47,6 +47,8 @@ databaseChangeLog:
               - column:
                   name: company_id
                   type: int
+                  constraints:
+                    nullable: false
   - changeSet:
       id: add-company-id-as-foreign-key-to-user-table
       author: Benwei Zhu

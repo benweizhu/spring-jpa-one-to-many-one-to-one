@@ -4,8 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.List;
 
 @Table
@@ -20,15 +25,12 @@ public class Company {
 
   private String name;
 
-  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-  private List<User> users = new ArrayList<>();
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name="company_id")
+  private List<User> users;
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "ceo_id")
   private User ceo;
 
-  public void addUser(User user) {
-    user.setCompany(this);
-    users.add(user);
-  }
 }
