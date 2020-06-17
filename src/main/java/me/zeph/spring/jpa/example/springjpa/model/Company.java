@@ -1,4 +1,4 @@
-package me.zeph.spring.jpa.example.springjpaoneton.model;
+package me.zeph.spring.jpa.example.springjpa.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

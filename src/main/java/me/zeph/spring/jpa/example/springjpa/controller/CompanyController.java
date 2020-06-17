@@ -1,9 +1,10 @@
-package me.zeph.spring.jpa.example.springjpaoneton.controller;
+package me.zeph.spring.jpa.example.springjpa.controller;
 
-import me.zeph.spring.jpa.example.springjpaoneton.model.Company;
-import me.zeph.spring.jpa.example.springjpaoneton.model.User;
-import me.zeph.spring.jpa.example.springjpaoneton.repository.CompanyRepository;
+import me.zeph.spring.jpa.example.springjpa.model.Company;
+import me.zeph.spring.jpa.example.springjpa.model.User;
+import me.zeph.spring.jpa.example.springjpa.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,16 @@ public class CompanyController {
   @GetMapping(value = "/company/{id}")
   public ResponseEntity<Company> getCompany(@PathVariable(name = "id") long id) {
     Optional<Company> companyOptional = companyRepository.findById(id);
+    if (companyOptional.isPresent()) {
+      return new ResponseEntity<>(companyOptional.get(), HttpStatus.OK);
+    } else {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping(value = "/company")
+  public ResponseEntity<Company> getCompanyByUser(@Param("username") String username) {
+    Optional<Company> companyOptional = companyRepository.findByUsersName(username);
     if (companyOptional.isPresent()) {
       return new ResponseEntity<>(companyOptional.get(), HttpStatus.OK);
     } else {

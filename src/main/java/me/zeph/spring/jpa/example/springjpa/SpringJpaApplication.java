@@ -1,13 +1,13 @@
-package me.zeph.spring.jpa.example.springjpaoneton;
+package me.zeph.spring.jpa.example.springjpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringJpaOneToNApplication {
+public class SpringJpaApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringJpaOneToNApplication.class, args);
+    SpringApplication.run(SpringJpaApplication.class, args);
   }
 
 }
